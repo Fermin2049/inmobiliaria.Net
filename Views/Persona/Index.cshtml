@@ -1,27 +1,31 @@
-@model IEnumerable<Persona>
+@model IEnumerable<Propietario>
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Personas</h1>
+    <h1 class="display-4">Propietario</h1>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
-                <th scope="col">Dni</th>
                 <th scope="col">Email</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Dni</th>
+                
             </tr>
         </thead>
         <tbody>
-            @foreach(var persona in Model)
+            @foreach(var propietario in Model)
             {
                 <tr>
-                    <td>@persona.Nombre</td>
-                    <td>@persona.Apellido</td>
-                    <td>@persona.Dni</td>
-                    <td>@persona.Email</td>
+                    <td>@propietario.Nombre</td>
+                    <td>@propietario.Apellido</td>
+                    <td>@propietario.Email</td>
+                    <td>@propietario.Telefono</td>
+                    <td>@propietario.Dni</td>
+                    
                 </tr>
             }
         </tbody>
