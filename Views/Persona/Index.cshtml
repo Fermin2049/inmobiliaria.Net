@@ -1,0 +1,29 @@
+@model IEnumerable<Persona>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Personas</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Dni</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var persona in Model)
+            {
+                <tr>
+                    <td>@persona.Nombre</td>
+                    <td>@persona.Apellido</td>
+                    <td>@persona.Dni</td>
+                    <td>@persona.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

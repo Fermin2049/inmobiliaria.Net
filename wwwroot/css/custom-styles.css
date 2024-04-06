@@ -1,0 +1,71 @@
+.wrapper {
+	display: flex;
+	width: 100%;
+}
+.sidebar {
+	min-width: 250px;
+	max-width: 250px;
+	background: #f0f0f0;
+	min-height: 100vh;
+}
+.sidebar .nav-link {
+	color: #333;
+}
+.page-content-wrapper {
+	flex: 1;
+	padding: 20px;
+}
+
+/* Estilos para el body y el fondo */
+body {
+	background-image: url('../img/background.webp');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+/* Estilos para el wrapper */
+.wrapper {
+	display: flex;
+	width: 100%;
+}
+
+/* Estilos para el page content wrapper */
+.page-content-wrapper {
+	flex: 1;
+	padding: 20px;
+}
+
+/* Estilos para el sidebar */
+.sidebar {
+	min-width: 250px;
+	max-width: 250px;
+	min-height: 100vh;
+	background-color: rgba(
+		0,
+		0,
+		0,
+		0.7
+	); /* Fondo oscuro semi-transparente para mejorar la legibilidad */
+}
+
+/* Estilos para todos los .nav-link dentro del sidebar */
+.sidebar .nav-link {
+	font-size: 20px;
+	padding: 10px 15px;
+	color: #ffffff; /* Color blanco para todos los estados del link */
+	text-shadow: 3px 3px 6px #000000; /* Sombra negra para mayor legibilidad */
+	transition: background-color 0.3s ease;
+}
+
+/* Estilos para el estado hover de .nav-link dentro del sidebar */
+.sidebar .nav-link:hover {
+	background-color: rgba(224, 224, 224, 0.8);
+}
+
+/* Estilos para la navbar brand si es necesario */
+.navbar-brand {
+	font-size: 24px;
+	color: #ffffff;
+	text-shadow: 3px 3px 6px #000000;
+}

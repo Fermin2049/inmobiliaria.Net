@@ -1,0 +1,12 @@
+bin/
+obj/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+ReSharper/
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*_i.c
+*_p.c
+*.vs/
