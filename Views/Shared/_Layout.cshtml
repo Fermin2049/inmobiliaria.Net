@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/real-estate.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/custom-styles.css" asp-append-version="true" />
-
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -21,11 +20,13 @@
                         <a class="nav-link active" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Propietarios</a>
+                        <a class="nav-link" id="propietario-link" href="#">Propietarios</a>
+                        <div id="crear-propietario-menu" style="display: none;">
+                          <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Crear Propietario</a>
+                          <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Editar Propietario</a>
+                          <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Eliminar Propietario</a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Crear Propietario</a>
-                   </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Inquilinos</a>
                     </li>
@@ -48,8 +49,18 @@
         </div>
     </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function() {
+        // Ocultar el menú de "Crear Propietario" al cargar la página
+        $("#crear-propietario-menu").hide();
+    
+        // Mostrar u ocultar el menú de "Crear Propietario" cuando se haga clic en "Propietarios"
+        $("#propietario-link").click(function() {
+           $("#crear-propietario-menu").toggle();
+         });
+        });
+    </script>
 </body>
 </html>
