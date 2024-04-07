@@ -20,5 +20,16 @@ public class PropietarioController : Controller
         return View(lista);
     }
 
-    
+    public IActionResult Crear()
+    {
+        return View();
+    }
+
+    public IActionResult Guardar(Propietario propietario)
+    {
+        ControllerPropietario rp = new ControllerPropietario();
+        rp.CrearPropietario(propietario);
+        return RedirectToAction(nameof(Index));
+    }
+
 }
