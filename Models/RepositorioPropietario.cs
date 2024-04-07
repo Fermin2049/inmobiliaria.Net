@@ -21,7 +21,7 @@ public class ControllerPropietario
                             Nombre = reader.GetString(nameof(Propietario.Nombre)),
                             Apellido = reader.GetString(nameof(Propietario.Apellido)),
                             Email = reader.GetString(nameof(Propietario.Email)),
-                            Telefono = reader.GetInt32(nameof(Propietario.Telefono)),
+                            Telefono = reader.GetString(nameof(Propietario.Telefono)),
                             Dni = reader.GetInt32(nameof(Propietario.Dni)),
                         });
                     }

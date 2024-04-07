@@ -14,7 +14,7 @@ public class Propietario
     [Required]
     public string? Email { get; set; }
     [Required]
-    public int Telefono { get; set; }
+    public string? Telefono { get; set; }
     [Required]
     public int Dni { get; set; }
     
