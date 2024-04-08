@@ -1,1 +1,15 @@
+@model IEnumerable<Propietario>
+@{
+    ViewData["TiTle"] = "Home Page";
+}    
 
+
+<div>
+    <h1 class="display-4"> Listado de Propietarios</h1>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Nombre <a asp-action="Crera" asp-route-id="@item.PropietarioID">(@item.Dni)</a></li>
+        }
+    </ul>
+</div>

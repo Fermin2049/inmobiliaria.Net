@@ -21,14 +21,19 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="propietario-link" href="#">Propietarios</a>
-                        <div id="crear-propietario-menu" style="display: none;">
+                        <div id="crud-propietario-menu" style="display: none;">
                           <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Crear Propietario</a>
                           <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Editar Propietario</a>
                           <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Eliminar Propietario</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Inquilinos</a>
+                        <a class="nav-link" id="inquilino-link" href="#">Inquilinos</a>
+                        <div id="crud-inquilino-menu" style="display: none;">
+                          <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Crear Inquilino</a>
+                          <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Editar Inquilino</a>
+                          <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Eliminar Inquilino</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Inmuebles</a>
@@ -54,11 +59,23 @@
     <script>
         $(document).ready(function() {
         // Ocultar el menú de "Crear Propietario" al cargar la página
-        $("#crear-propietario-menu").hide();
+        $("#crud-propietario-menu").hide();
+        
     
         // Mostrar u ocultar el menú de "Crear Propietario" cuando se haga clic en "Propietarios"
         $("#propietario-link").click(function() {
-           $("#crear-propietario-menu").toggle();
+           $("#crud-propietario-menu").toggle();
+         });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+        // Ocultar el menú de "Crear Propietario" al cargar la página 
+        $("#crud-inquilino-menu"). hide();
+    
+        // Mostrar u ocultar el menú de "Crear Propietario" cuando se haga clic en "Propietarios"
+        $("#inquilino-link").click(function() {
+           $("#crud-inquilino-menu").toggle();
          });
         });
     </script>
