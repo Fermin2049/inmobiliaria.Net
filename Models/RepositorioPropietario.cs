@@ -1,6 +1,8 @@
 using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Hosting.StaticWebAssets;
+
 
 namespace asp.net.Models;
 
@@ -64,10 +66,12 @@ public class ControllerPropietario
                 command.Parameters.AddWithValue("@Telefono", propietario.Telefono);
                 command.Parameters.AddWithValue("@Dni", propietario.Dni);
 
+             
                 connection.Open();
                 id = Convert.ToInt32(command.ExecuteScalar());
             }
         }
+         
         return id;
     }
 

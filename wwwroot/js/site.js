@@ -16,4 +16,17 @@ $(document).ready(function () {
 	$('#inquilino-link').click(function () {
 		$('#crud-inquilino-menu').toggle();
 	});
+
+	
 });
+
+
+    function mostrarAlerta(mensaje, tipo) {
+        Swal.fire({
+            icon:tipo, 
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1500 
+        });
+    }
+
