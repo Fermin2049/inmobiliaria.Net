@@ -1,4 +1,19 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function () {
+	// Ocultar el menú de "Crear Propietario" al cargar la página
+	$('#crud-propietario-menu').hide();
 
-// Write your JavaScript code.
+	// Mostrar u ocultar el menú de "Crear Propietario" cuando se haga clic en "Propietarios"
+	$('#propietario-link').click(function () {
+		$('#crud-propietario-menu').toggle();
+	});
+});
+
+$(document).ready(function () {
+	// Ocultar el menú de "Crear Propietario" al cargar la página
+	$('#crud-inquilino-menu').hide();
+
+	// Mostrar u ocultar el menú de "Crear Propietario" cuando se haga clic en "Propietarios"
+	$('#inquilino-link').click(function () {
+		$('#crud-inquilino-menu').toggle();
+	});
+});
