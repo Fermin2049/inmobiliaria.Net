@@ -21,5 +21,5 @@ public class Inmueble
     public int Valor { get; set; }
     public bool Estado { get; set; }
 
-    public virtual Propietario Propietario { get; set; }
+    public virtual Propietario? Propietario { get; set; }
 }

@@ -20,5 +20,5 @@ public class Pago
     [Required]
     public bool Estado { get; set; }
 
-    public virtual Contrato Contrato { get; set; }
+    public virtual Contrato? Contrato { get; set; }
 }
