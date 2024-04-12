@@ -14,7 +14,7 @@ public class Pago
     [Required]
     public DateTime FechaPago { get; set; }
     [Required, MaxLength(255)]
-    public string Detalle { get; set; }
+    public string? Detalle { get; set; }
     [Required]
     public decimal Importe { get; set; }
     [Required]

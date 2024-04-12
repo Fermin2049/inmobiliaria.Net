@@ -10,11 +10,11 @@ public class Inmueble
     [ForeignKey("Propietario")]
     public int PropietarioID { get; set; }
     [Required, MaxLength(100)]
-    public string DireccionInmueble { get; set; }
+    public string? DireccionInmueble { get; set; }
     [Required, MaxLength(25)]
-    public string Uso { get; set; }
+    public string? Uso { get; set; }
     [Required, MaxLength(50)]
-    public string Tipo { get; set; }
+    public string? Tipo { get; set; }
     [Required]
     public int CantAmbiente { get; set; }
     [Required]
