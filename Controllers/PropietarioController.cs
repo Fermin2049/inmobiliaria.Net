@@ -19,6 +19,32 @@ public class PropietarioController : Controller
         var lista = rp.GetPropietarios();
         return View(lista);
     }
+    public IActionResult Buscar()
+		{
+			try
+			{
+				return View();
+			}
+			catch (Exception ex)
+			{//poner breakpoints para detectar errores
+				throw;
+			}
+		}
+
+		// GET: Propietario/Buscar/5
+		[Route("[controller]/Buscar/{q}", Name = "Buscar")]
+		public IActionResult Buscar(string q)
+		{
+			try
+			{
+				var res = new ControllerPropietario().BuscarPorNombre(q);
+				return Json(new { Datos = res });
+			}
+			catch (Exception ex)
+			{
+				return Json(new { Error = ex.Message });
+			}
+		}
 
     public IActionResult Crear()
     {

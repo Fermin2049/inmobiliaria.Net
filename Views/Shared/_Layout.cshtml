@@ -22,6 +22,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="propietario-link" href="#">Propietarios</a>
                         <div id="crud-propietario-menu" style="display: none;">
+                          <a class="nav-link" asp-controller="Propietario" asp-action="Buscar">Buscar Propietario</a>
                           <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Crear Propietario</a>
                           <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Editar Propietario</a>
                           <a class="nav-link" asp-controller="Propietario" asp-action="Crear">Eliminar Propietario</a>
@@ -53,6 +54,7 @@
             </main>
         </div>
     </div>
+    @RenderSection("Scripts", required: false)
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js'></script>
