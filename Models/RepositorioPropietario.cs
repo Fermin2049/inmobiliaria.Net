@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace asp.net.Models;
 
-public class ControllerPropietario
+public class RepositorioPropietario
 {
     readonly string ConnectionString = "Server=localhost;Database=inmobiliaria;User=root;Password=;";
 
@@ -193,5 +193,42 @@ public class ControllerPropietario
 			}
 			return res;
 		}
+
+        public async Task<IList<Propietario>> BuscarEnVivo(string term)
+{
+    List<Propietario> resultados = new List<Propietario>();
+    using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+    {
+        string sql = @"SELECT PropietarioID, Nombre, Apellido, Dni, Telefono, Email, Estado
+                       FROM Propietarios
+                       WHERE Nombre LIKE @term OR Apellido LIKE @term OR Dni LIKE @term";
+        using (MySqlCommand command = new MySqlCommand(sql, connection))
+        {
+            command.Parameters.AddWithValue("@term", $"%{term}%");
+            command.CommandType = CommandType.Text;
+            await connection.OpenAsync();
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                while (await reader.ReadAsync())
+                {
+                    var propietario = new Propietario
+                    {
+                        PropietarioID = reader.GetInt32(reader.GetOrdinal(nameof(Propietario.PropietarioID))),
+                            Nombre = reader.GetString(reader.GetOrdinal(nameof(Propietario.Nombre))),
+                            Apellido = reader.GetString(reader.GetOrdinal(nameof(Propietario.Apellido))),
+                            Dni = reader.GetInt32(reader.GetOrdinal(nameof(Propietario.Dni))),
+                            Email = reader.GetString(reader.GetOrdinal(nameof(Propietario.Email))),
+                            Telefono = reader.GetString(reader.GetOrdinal(nameof(Propietario.Telefono))),
+                            Estado = reader.GetBoolean(reader.GetOrdinal(nameof(Propietario.Estado)))
+                    };
+                    resultados.Add(propietario);
+                }
+            }
+        }
+    }
+    return resultados;
+}
+
+
 
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace asp.net.Models;
 
-public class ControllerUsuario
+public class RepositorioUsuario
 {
     readonly string ConnectionString = "Server=localhost;Database=inmobiliaria;User=root;Password=;";
 

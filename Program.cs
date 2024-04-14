@@ -1,7 +1,11 @@
+using asp.net.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<RepositorioPropietario>();
 
 var app = builder.Build();
 
