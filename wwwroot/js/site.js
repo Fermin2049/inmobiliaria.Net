@@ -18,15 +18,6 @@ $(document).ready(function () {
 	});
 });
 
-function mostrarAlerta(mensaje, tipo) {
-	Swal.fire({
-		icon: tipo,
-		title: mensaje,
-		showConfirmButton: false,
-		timer: 1500,
-	});
-}
-
 function buscarPropietarioEnVivo(inputElement) {
 	var searchTerm = inputElement.value;
 
@@ -57,3 +48,46 @@ function buscarPropietarioEnVivo(inputElement) {
 		})
 		.catch((error) => console.error('Error al buscar propietarios:', error));
 }
+
+// Coloca esto en tu archivo de script o dentro de una etiqueta <script> en tu vista.
+$(document).ready(function () {
+	$('#GuardarInquilino').submit(function (event) {
+		event.preventDefault(); // Previene la recarga de la página por el envío del formulario
+		var formData = $(this).serialize(); // Serializa los datos del formulario
+
+		$.ajax({
+			url: '/Inquilino/GuardarInquilino', // La URL de tu método en el controlador
+			type: 'POST',
+			data: formData,
+			success: function (response) {
+				if (response.success) {
+					// Muestra el SweetAlert con la respuesta
+					Swal.fire({
+						icon: 'success',
+						title: '¡Guardado!',
+						text: response.message,
+					}).then((result) => {
+						if (result.isConfirmed) {
+							window.location.href = '/Inquilino/Crear'; // Redirecciona al Index si el usuario da clic en 'OK'
+						}
+					});
+				} else {
+					// Manejar la situación de error
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: response.message,
+					});
+				}
+			},
+			error: function (xhr, status, error) {
+				// Manejar error AJAX
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Un error ocurrió: ' + error,
+				});
+			},
+		});
+	});
+});

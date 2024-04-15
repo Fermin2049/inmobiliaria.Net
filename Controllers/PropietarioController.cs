@@ -38,21 +38,7 @@ public class PropietarioController : Controller
     }
 
     // Puedes mantener este si tienes una ruta específica con un parámetro
-    [HttpGet("[controller]/Buscar/{q}", Name = "Buscar")]
-    public IActionResult Buscar(string q)
-    {
-        try
-        {
-            // Aquí también deberías usar la dependencia inyectada
-            var res = _repositorioPropietario.BuscarPorNombre(q);
-            return Json(new { Datos = res });
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error al buscar por nombre");
-            return Json(new { Error = ex.Message });
-        }
-    }
+    
 
     [HttpGet]
     public async Task<IActionResult> BuscarEnVivo(string term)

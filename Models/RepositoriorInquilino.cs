@@ -1,6 +1,7 @@
 using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using System.Data;
 
 namespace asp.net.Models;
 
@@ -33,7 +34,7 @@ public class RepositorioInquilino
                             InquilinoID = reader.GetInt32(reader.GetOrdinal(nameof(Inquilino.InquilinoID))),
                             Nombre = reader.GetString(reader.GetOrdinal(nameof(Inquilino.Nombre))),
                             Apellido = reader.GetString(reader.GetOrdinal(nameof(Inquilino.Apellido))),
-                            Dni = reader.GetInt32(reader.GetOrdinal(nameof(Inquilino.Dni))),
+                            Dni = reader.GetInt32(reader.GetOrdinal(nameof(Inquilino.Dni))), // Este es correcto
                             Telefono = reader.GetString(reader.GetOrdinal(nameof(Inquilino.Telefono))),
                             Email = reader.GetString(reader.GetOrdinal(nameof(Inquilino.Email))),
                             Estado = reader.GetBoolean(reader.GetOrdinal(nameof(Inquilino.Estado)))
@@ -120,4 +121,39 @@ public class RepositorioInquilino
             }
         }
     }
+
+    public async Task<IList<Inquilino>> BuscarEnVivo(string term)
+{
+    List<Inquilino> resultados = new List<Inquilino>();
+    using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+    {
+        string sql = @"SELECT InquilinoID, Nombre, Apellido, Dni, Telefono, Email, Estado
+                       FROM inquilinos
+                       WHERE Nombre LIKE @term OR Apellido LIKE @term OR Dni LIKE @term";
+        using (MySqlCommand command = new MySqlCommand(sql, connection))
+        {
+            command.Parameters.AddWithValue("@term", $"%{term}%");
+            command.CommandType = CommandType.Text;
+            await connection.OpenAsync();
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                while (await reader.ReadAsync())
+                {
+                    var inquilino = new Inquilino
+                    {
+                        InquilinoID = reader.GetInt32(reader.GetOrdinal(nameof(Inquilino.InquilinoID))),
+                            Nombre = reader.GetString(reader.GetOrdinal(nameof(Inquilino.Nombre))),
+                            Apellido = reader.GetString(reader.GetOrdinal(nameof(Inquilino.Apellido))),
+                            Dni = reader.GetInt32(reader.GetOrdinal(nameof(Inquilino.Dni))),
+                            Email = reader.GetString(reader.GetOrdinal(nameof(Inquilino.Email))),
+                            Telefono = reader.GetString(reader.GetOrdinal(nameof(Inquilino.Telefono))),
+                            Estado = reader.GetBoolean(reader.GetOrdinal(nameof(Inquilino.Estado)))
+                    };
+                    resultados.Add(inquilino);
+                }
+            }
+        }
+    }
+    return resultados;
+}
 }

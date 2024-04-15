@@ -22,8 +22,8 @@ public class Contrato
     public int Deposito { get; set; }
     public int Comision { get; set; }
     [MaxLength(255)]
-    public string Condiciones { get; set; }
+    public string? Condiciones { get; set; }
 
-    public virtual Inmueble Inmueble { get; set; }
-    public virtual Inquilino Inquilino { get; set; }
+    public virtual Inmueble? Inmueble { get; set; }
+    public virtual Inquilino? Inquilino { get; set; }
 }

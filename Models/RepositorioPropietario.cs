@@ -122,77 +122,7 @@ public class RepositorioPropietario
     }
 
 
-    public Propietario ObtenerPorEmail(string email)
-		{
-			Propietario? p = null;
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
-			{
-				string sql = @$"SELECT 
-					{nameof(Propietario.PropietarioID)}, Nombre, Apellido, Dni, Telefono, Email, Estado
-					FROM Propietarios
-					WHERE Email=@email";
-				using (var command = new MySqlCommand(sql, connection))
-				{
-					command.CommandType = CommandType.Text;
-					command.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
-					connection.Open();
-					var reader = command.ExecuteReader();
-					if (reader.Read())
-					{
-						 p = new Propietario
-						{
-							PropietarioID = reader.GetInt32(reader.GetOrdinal(nameof(Propietario.PropietarioID))),
-                            Nombre = reader.GetString(reader.GetOrdinal(nameof(Propietario.Nombre))),
-                            Apellido = reader.GetString(reader.GetOrdinal(nameof(Propietario.Apellido))),
-                            Dni = reader.GetInt32(reader.GetOrdinal(nameof(Propietario.Dni))),
-                            Email = reader.GetString(reader.GetOrdinal(nameof(Propietario.Email))),
-                            Telefono = reader.GetString(reader.GetOrdinal(nameof(Propietario.Telefono))),
-                            Estado = reader.GetBoolean(reader.GetOrdinal(nameof(Propietario.Estado)))
-							
-						};
-					}
-					connection.Close();
-				}
-			}
-			return p;
-		}
-
-        public IList<Propietario> BuscarPorNombre(string nombre)
-		{
-			List<Propietario> res = new List<Propietario>();
-			Propietario? p = null;
-			nombre = "%" + nombre + "%";
-			using (MySqlConnection connection = new MySqlConnection(ConnectionString))
-			{
-				string sql = @"SELECT
-					PropietarioID, Nombre, Apellido, Dni, Telefono, Email, Estado 
-					FROM Propietarios
-					WHERE Nombre LIKE @nombre OR Apellido LIKE @nombre";
-				using (var command = new MySqlCommand(sql, connection))
-				{
-					command.Parameters.Add("@nombre", MySqlDbType.VarChar).Value = nombre;
-					command.CommandType = CommandType.Text;
-					connection.Open();
-					var reader = command.ExecuteReader();
-					while (reader.Read())
-					{
-						p = new Propietario
-						{
-							PropietarioID = reader.GetInt32(reader.GetOrdinal(nameof(Propietario.PropietarioID))),
-                            Nombre = reader.GetString(reader.GetOrdinal(nameof(Propietario.Nombre))),
-                            Apellido = reader.GetString(reader.GetOrdinal(nameof(Propietario.Apellido))),
-                            Dni = reader.GetInt32(reader.GetOrdinal(nameof(Propietario.Dni))),
-                            Email = reader.GetString(reader.GetOrdinal(nameof(Propietario.Email))),
-                            Telefono = reader.GetString(reader.GetOrdinal(nameof(Propietario.Telefono))),
-                            Estado = reader.GetBoolean(reader.GetOrdinal(nameof(Propietario.Estado)))
-						};
-						res.Add(p);
-					}
-					connection.Close();
-				}
-			}
-			return res;
-		}
+    
 
         public async Task<IList<Propietario>> BuscarEnVivo(string term)
 {
