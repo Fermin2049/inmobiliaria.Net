@@ -1,0 +1,18 @@
+@model Inquilino
+@{
+    ViewData["Title"] = "Buscar Inquilino";
+}
+
+<div class="container">
+    <h1>Buscar Inquilino</h1>
+    <hr />
+    <div class="form-group">
+        <label for="busquedaInquilino">Búsqueda de Inquilino:</label>
+        <input type="text" id="busquedaInquilino" class="form-control" placeholder="Ingresa nombre, apellido o DNI" onkeyup="buscarInquilinoEnVivo(this)" />
+    </div>
+    <div id="resultado-busqueda-inquilinos" class="mt-4">
+        <!-- Los resultados de la búsqueda se insertarán aquí -->
+    </div>
+</div>
+
+

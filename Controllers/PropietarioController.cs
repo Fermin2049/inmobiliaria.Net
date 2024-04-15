@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
-using asp.net.Models; // Asegúrate de que tus modelos estén en este namespace
 using System.Threading.Tasks;
+using asp.net.Models; // Asegúrate de que tus modelos estén en este namespace
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging; // Si usas ILogger, necesitas este namespace
 
 namespace asp.net.Controllers;
@@ -11,7 +11,10 @@ public class PropietarioController : Controller
     private readonly RepositorioPropietario _repositorioPropietario;
 
     // Constructor único con todas las dependencias requeridas
-    public PropietarioController(ILogger<PropietarioController> logger, RepositorioPropietario repositorioPropietario)
+    public PropietarioController(
+        ILogger<PropietarioController> logger,
+        RepositorioPropietario repositorioPropietario
+    )
     {
         _logger = logger;
         _repositorioPropietario = repositorioPropietario;
@@ -38,7 +41,7 @@ public class PropietarioController : Controller
     }
 
     // Puedes mantener este si tienes una ruta específica con un parámetro
-    
+
 
     [HttpGet]
     public async Task<IActionResult> BuscarEnVivo(string term)

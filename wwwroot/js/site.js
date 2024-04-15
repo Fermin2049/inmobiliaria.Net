@@ -91,3 +91,36 @@ $(document).ready(function () {
 		});
 	});
 });
+
+function buscarInquilinoEnVivo(inputElement) {
+	var searchTerm = inputElement.value;
+
+	// Limpiar los resultados si la búsqueda es demasiado corta
+	if (searchTerm.length < 3) {
+		document.getElementById('resultado-busqueda-inquilinos').innerHTML = '';
+		return;
+	}
+
+	// Realiza una solicitud GET al servidor con el término de búsqueda
+	fetch(`/Inquilino/BuscarEnVivo?term=${searchTerm}`)
+		.then((response) => response.json())
+		.then((data) => {
+			var resultadosElement = document.getElementById(
+				'resultado-busqueda-inquilinos'
+			);
+			resultadosElement.innerHTML = ''; // Limpiar resultados antiguos
+
+			if (data.message) {
+				resultadosElement.innerHTML =
+					'<a href="/Inquilino/Crear">Crear nuevo inquilino</a>';
+			} else {
+				data.forEach((inquilino) => {
+					// Construye el HTML para cada inquilino encontrado
+					var inquilinoDiv = document.createElement('div');
+					inquilinoDiv.innerHTML = `Nombre: ${inquilino.nombre} - Apellido: ${inquilino.apellido} - DNI: ${inquilino.dni}`;
+					resultadosElement.appendChild(inquilinoDiv);
+				});
+			}
+		})
+		.catch((error) => console.error('Error al buscar inquilinos:', error));
+}
