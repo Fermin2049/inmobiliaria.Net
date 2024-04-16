@@ -24,3 +24,90 @@ html {
 body {
 	margin-bottom: 60px;
 }
+/*-------------------INQUILINO-----------------------*/
+/* Ajusta la barra de búsqueda */
+.search-bar {
+	max-width: 400px; /* O el tamaño que prefieras */
+	margin: 20px auto; /* Aumenta el margen superior e inferior */
+}
+
+/* Estilos para la tabla y la barra de búsqueda con fondo como el navbar */
+.table-container,
+.search-container {
+	background-color: #2c3e50; /* Color de fondo para que coincida con tu navbar */
+	padding: 1rem;
+	border-radius: 0.25rem; /* Borde redondeado */
+}
+
+/* Estilos para la tabla */
+.table-custom {
+	background-color: transparent; /* Fondo transparente para la tabla */
+	margin-top: 0.5rem; /* Espacio arriba de la tabla */
+}
+
+.table-custom th,
+.table-custom td {
+	color: white; /* Texto blanco para las celdas */
+}
+
+/* Ajusta el tamaño y alineación del texto de la tabla */
+.table-custom th,
+.table-custom td {
+	font-size: 0.875rem; /* Más pequeño */
+	padding: 0.5rem; /* Menos relleno */
+}
+
+/* Mejora la visibilidad de los iconos de acción */
+.table-custom .fa-pencil-alt {
+	color: #f39c12; /* Color naranja para el icono de lápiz */
+}
+
+/* Mejora la visibilidad del botón de acción */
+.action-button {
+	color: white; /* Texto blanco para el botón */
+	background-color: #3498db; /* Fondo azul para el botón */
+	border-radius: 0.25rem; /* Borde redondeado para el botón */
+	padding: 0.25rem 0.5rem; /* Relleno para el botón */
+}
+
+.action-button:hover {
+	background-color: #2980b9; /* Color al pasar el mouse */
+}
+
+/* Fondo semi-transparente para contenedores */
+.bg-dark {
+	background-color: rgba(
+		0,
+		0,
+		0,
+		0.7
+	) !important; /* Aumenta la transparencia */
+}
+
+/* Estilos para las tablas de Bootstrap */
+.table-custom thead th {
+	background-color: #212529; /* Cabezera de la tabla con el color de Bootstrap 'dark' */
+	color: #fff;
+}
+
+/* Estilos para botones en la tabla */
+.btn-table-action {
+	color: #fff; /* Iconos blancos */
+	background-color: transparent;
+	border: none;
+}
+
+.btn-table-action:hover {
+	background-color: #34548f; /* Cambiar al color deseado para el hover */
+}
+
+/* Fondo oscuro para la barra de búsqueda con esquinas redondeadas */
+.search-container {
+	background-color: rgba(
+		52,
+		58,
+		64,
+		0.8
+	); /* Color de Bootstrap 'dark' con transparencia */
+	border-radius: 0.25rem;
+}

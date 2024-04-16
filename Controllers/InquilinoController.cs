@@ -42,15 +42,8 @@ public class InquilinoController : Controller
     [HttpGet]
     public async Task<IActionResult> BuscarEnVivo(string term)
     {
-        var inquilinos = await _repositorioInquilino.BuscarEnVivo(term);
-        if (inquilinos.Count > 0)
-        {
-            return Json(inquilinos);
-        }
-        else
-        {
-            return Json(new { message = "No se encontraron resultados. ¿Desea crear uno nuevo?" });
-        }
+        var inquilinos = await _repositorioInquilino.BuscarEnVivo(term) ?? new List<Inquilino>(); // Asegúrate de devolver una lista vacía si es null
+        return Json(new { inquilinos }); // Siempre devuelve una estructura JSON con la lista de inquilinos
     }
 
     public IActionResult Crear()
@@ -70,6 +63,41 @@ public class InquilinoController : Controller
             return Json(
                 new { success = false, message = "Ocurrió un error al guardar el inquilino." }
             );
+        }
+    }
+
+    [HttpGet]
+    public IActionResult ObtenerInquilino(int inquilinoID)
+    {
+        var inquilino = _repositorioInquilino.ObtenerInquilinoPorId(inquilinoID);
+        if (inquilino != null)
+        {
+            return Json(new { success = true, data = inquilino });
+        }
+        else
+        {
+            return Json(new { success = false, message = "Inquilino no encontrado." });
+        }
+    }
+
+    // En InquilinoController.cs
+    [HttpPost]
+    public async Task<IActionResult> GuardarEdicionInquilino(
+        int inquilinoID,
+        [FromBody] Inquilino datosEditados
+    )
+    {
+        // Asegúrate de establecer el InquilinoID en los datos editados antes de actualizar
+        datosEditados.InquilinoID = inquilinoID;
+        var resultado = await _repositorioInquilino.ActualizarInquilino(datosEditados);
+
+        if (resultado)
+        {
+            return Json(new { success = true, message = "Inquilino actualizado con éxito." });
+        }
+        else
+        {
+            return Json(new { success = false, message = "Error al actualizar el inquilino." });
         }
     }
 }

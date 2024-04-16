@@ -3,21 +3,16 @@
     ViewData["Title"] = "Buscar Propietario";
 }
 
-<h1>Búsqueda de Propietarios</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label for="q" class="control-label">Nombre/Apellido/DNI:</label>
-            <input type="text" class="form-control" placeholder="Escriba para buscar..." id="q" onkeyup="buscarPropietarioEnVivo(this)" autocomplete="off" />
-
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="search-container bg-dark text-white p-3 rounded">
+                <input type="text" class="form-control" id="q" placeholder="Búsqueda de inquilino..." onkeyup="buscarInquilinoEnVivo(this)" autocomplete="off" />
+            </div>
+            <div id="resultado-busqueda-inquilinos" class="mt-3">
+                <!-- Los resultados de la búsqueda se mostrarán aquí -->
+            </div>
         </div>
     </div>
 </div>
-<div id="resultado-busqueda">
-    <!-- Los resultados de la búsqueda en vivo se mostrarán aquí -->
-</div>
 
-<div>
-    <a asp-action="Index">Volver a la lista</a>
-</div>
